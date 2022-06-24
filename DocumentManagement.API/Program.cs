@@ -9,6 +9,8 @@ using DocumentManagement.Infrastructure.Services.Sharepoint.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile("appsettings.Development.json", false, true);
+
 // Add services to the container.
 builder.Services.AddScoped<IDocumentService, SharepointIntegrationService>();
 builder.Services.AddScoped<IDocumentHandler, DocumentHandler>();
