@@ -20,7 +20,7 @@ namespace DocumentManagement.API.Controllers
         }
 
         [HttpPost]
-        [Route("api/document")]
+        [Route("api/document/upload")]
         public IActionResult UploadDocument(UploadDocumentRequest uploadDocumentRequest)
         {
             Document documentRequest = _mapper.Map<Document>(uploadDocumentRequest);
@@ -31,10 +31,10 @@ namespace DocumentManagement.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/document/download/{documentPath}")]
-        public  FileContentResult DownloadDocument(string documentPath)
+        [Route("api/document/download/{fileName}")]
+        public  FileContentResult DownloadDocument(string fileName)
         {
-            var document = _documentHandler.DownloadDocument(documentPath);
+            var document = _documentHandler.DownloadDocument(fileName);
             DownloadDocumentResponse response = _mapper.Map<DownloadDocumentResponse>(document);
             
             MemoryStream ms = new MemoryStream();

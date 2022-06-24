@@ -6,6 +6,6 @@ namespace DocumentManagement.Application.Interfaces.Application
     public interface IDocumentHandler
     {
         Document UploadDocument(Document document);
-        DownloadDocumentResponseDTO DownloadDocument(string documentPath);
+        DownloadDocumentResponseDTO DownloadDocument(string fileName);
     }
 }

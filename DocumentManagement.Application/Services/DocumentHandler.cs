@@ -22,10 +22,16 @@ namespace DocumentManagement.Application.Services
             _crmService = crmService;
         }
 
-        public DownloadDocumentResponseDTO DownloadDocument(string documentPath)
+        public DownloadDocumentResponseDTO DownloadDocument(string fileName)
         {
-            string documentPathSanatized = HttpUtility.UrlDecode(documentPath);
-            return _documentService.DownloadDocument(documentPathSanatized);
+            Configuration configurationFolderPath = _crmService.GetConfigurationByKey(ConfigurationKeys.SharePoint_FolderPath);
+
+            if (configurationFolderPath == null)
+                throw new ConfigurationNotFound(ConfigurationKeys.SharePoint_FolderPath);
+
+            string filePath = $"{configurationFolderPath.Value}/{fileName}";
+
+            return _documentService.DownloadDocument(filePath);
         }
 
         public Document UploadDocument(Document document)

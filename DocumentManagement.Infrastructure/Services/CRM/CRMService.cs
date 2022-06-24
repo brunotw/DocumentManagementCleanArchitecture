@@ -10,7 +10,7 @@ namespace DocumentManagement.Infrastructure.Services.CRM
     public class CRMService : ICRMService
     {
         private readonly IConfiguration _configuration;
-        private readonly IOrganizationService _servicve;
+        private readonly IOrganizationService _service;
 
         private readonly string clientId;
         private readonly string clientSecret;
@@ -22,7 +22,7 @@ namespace DocumentManagement.Infrastructure.Services.CRM
             clientId = _configuration.GetValue<string>("CRMConfig:ClientId");
             clientSecret = _configuration.GetValue<string>("CRMConfig:ClientSecret");
             environment = _configuration.GetValue<string>("CRMConfig:Environment");
-            _servicve = ConnectToCRM();
+            _service = ConnectToCRM();
         }
 
         public Configuration GetConfigurationByKey(string key)
@@ -40,7 +40,7 @@ namespace DocumentManagement.Infrastructure.Services.CRM
                                 </entity>
                              </fetch>";
 
-            Entity configuraitonEntity = _servicve.RetrieveMultiple(new FetchExpression(query)).Entities.FirstOrDefault();
+            Entity configuraitonEntity = _service.RetrieveMultiple(new FetchExpression(query)).Entities.FirstOrDefault();
 
             if (configuraitonEntity != null)
             {

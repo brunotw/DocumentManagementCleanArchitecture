@@ -25,7 +25,6 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
             var document = DownloadFile(context, filePath);
             return document;
         }
-
         public Document UploadDocument(Document document)
         {
             using (var authenticationManager = new AuthenticationManager())
@@ -61,7 +60,6 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
 
             return response;
         }
-
         private Guid UploadDocument(ClientContext context, Document document)
         {
             FileCreationInformation fileCreationInfo = new()
