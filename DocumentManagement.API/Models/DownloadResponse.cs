@@ -1,6 +1,6 @@
 ﻿namespace DocumentManagement.API.DTOs
 {
-    public class DownloadDocumentResponse
+    public class DownloadResponse
     {
         public Guid Id { get; set; }
         public string FileName { get; set; }

@@ -18,14 +18,14 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
             _sharePointConfiguration = sharePointConfiguration;
         }
 
-        public DownloadDocumentResponseDTO DownloadDocument(string filePath)
+        public DownloadDocumentResponse DownloadDocument(string filePath)
         {
             AuthenticationManager authenticationManager = new AuthenticationManager();
             ClientContext context = authenticationManager.GetContext(_sharePointConfiguration.SiteURL, _sharePointConfiguration.User, GetSecurePassword());
             var document = DownloadFile(context, filePath);
             return document;
         }
-        public Document UploadDocument(Document document)
+        public UploadDocumentResponse UploadDocument(UploadDocumentRequest document)
         {
             using (var authenticationManager = new AuthenticationManager())
             {
@@ -33,16 +33,16 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
                 {
                     Guid sharepointId = UploadDocument(context, document);
 
-                    return new Document
+                    return new UploadDocumentResponse
                     {
-                        Id = sharepointId,
-                        FileName = document.FileName,
+                        ExternalId = sharepointId.ToString(),
+                        Name = document.Name,
                     };
                 }
             }
         }
 
-        private DownloadDocumentResponseDTO DownloadFile(ClientContext context, string fileRef)
+        private DownloadDocumentResponse DownloadFile(ClientContext context, string fileRef)
         {
             File file = context.Web.GetFileByUrl(fileRef);
             context.Load(file);
@@ -51,7 +51,7 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
             ClientResult<Stream> fileStream = file.OpenBinaryStream();
             context.ExecuteQuery();
 
-            DownloadDocumentResponseDTO response = new()
+            DownloadDocumentResponse response = new()
             {
                 Id = file.UniqueId,
                 FileName = file.Name,
@@ -60,13 +60,13 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
 
             return response;
         }
-        private Guid UploadDocument(ClientContext context, Document document)
+        private Guid UploadDocument(ClientContext context, UploadDocumentRequest document)
         {
             FileCreationInformation fileCreationInfo = new()
             {
                 Content = Convert.FromBase64String(document.DocumentBase64),
                 Overwrite = true,
-                Url = document.FileName
+                Url = document.Name
             };
 
             var targetFolder = context.Web.GetFolderByServerRelativeUrl(document.FolderPath);

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DocumentManagement.API.DTOs;
-using DocumentManagement.Domain.Entities;
+using DocumentManagement.Application.DTOs;
 
 namespace DocumentManagement.API.MappingProfiles
 {
@@ -8,9 +8,9 @@ namespace DocumentManagement.API.MappingProfiles
     {
         public UploadDocumentResponseProfile()
         {
-            CreateMap<Document, UploadDocumentResponse>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
-                .ForMember(dest => dest.FileName, opt => opt.MapFrom(source => source.FileName));
+            CreateMap<UploadDocumentResponse, UploadResponse>()
+                .ForMember(dest => dest.ExternalId, opt => opt.MapFrom(source => source.ExternalId))
+                .ForMember(dest => dest.FileName, opt => opt.MapFrom(source => source.Name));
         }
     }
 }

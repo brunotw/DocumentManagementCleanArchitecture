@@ -22,7 +22,7 @@ namespace DocumentManagement.Application.Services
             _crmService = crmService;
         }
 
-        public DownloadDocumentResponseDTO DownloadDocument(string fileName)
+        public DownloadDocumentResponse DownloadDocument(string fileName)
         {
             Configuration configurationFolderPath = _crmService.GetConfigurationByKey(ConfigurationKeys.SharePoint_FolderPath);
 
@@ -34,7 +34,7 @@ namespace DocumentManagement.Application.Services
             return _documentService.DownloadDocument(filePath);
         }
 
-        public Document UploadDocument(Document document)
+        public UploadDocumentResponse UploadDocument(UploadDocumentRequest document)
         {
             _documentValidator.ValidateDocument(document);
 

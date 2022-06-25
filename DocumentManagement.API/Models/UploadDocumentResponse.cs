@@ -1,8 +1,8 @@
 ﻿namespace DocumentManagement.API.DTOs
 {
-    public class UploadDocumentResponse
+    public class UploadResponse
     {
-        public Guid Id { get; set; }
-        public string FileName { get; set; } 
+        public string ExternalId { get; set; }
+        public string FileName { get; set; }
     }
 }

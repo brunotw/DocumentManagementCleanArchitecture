@@ -1,5 +1,6 @@
 using AutoMapper;
 using DocumentManagement.API.DTOs;
+using DocumentManagement.Application.DTOs;
 using DocumentManagement.Application.Interfaces.Application;
 using DocumentManagement.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -21,10 +22,10 @@ namespace DocumentManagement.API.Controllers
 
         [HttpPost]
         [Route("api/document/upload")]
-        public IActionResult UploadDocument(UploadDocumentRequest uploadDocumentRequest)
+        public IActionResult UploadDocument(UploadRequest uploadDocumentRequest)
         {
-            Document documentRequest = _mapper.Map<Document>(uploadDocumentRequest);
-            Document documentResponse = _documentHandler.UploadDocument(documentRequest);
+            UploadDocumentRequest documentRequest = _mapper.Map<UploadDocumentRequest>(uploadDocumentRequest);
+            UploadDocumentResponse documentResponse = _documentHandler.UploadDocument(documentRequest);
             UploadDocumentResponse uploadDocumentResponse = _mapper.Map<UploadDocumentResponse>(documentResponse);
 
             return Ok(uploadDocumentResponse);

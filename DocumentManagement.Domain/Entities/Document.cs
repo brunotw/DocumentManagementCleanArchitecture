@@ -2,16 +2,9 @@
 {
     public class Document
     {
-        public Guid Id { get; set; }
-        public string FileName { get; set; }
-        public string Extension
-        {
-            get
-            {
-                return string.IsNullOrEmpty(FileName) ? string.Empty : Path.GetExtension(FileName);
-            }
-        }
-        public string DocumentBase64 { get; set; }
-        public string FolderPath { get; set; }
+        public Guid CRMId { get; set; }
+        public string ExternalId { get; set; }
+        public string Name { get; set; }
+        public string Extension { get; set; }
     }
 }

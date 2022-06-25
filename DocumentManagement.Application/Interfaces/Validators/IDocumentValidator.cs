@@ -1,9 +1,9 @@
-﻿using DocumentManagement.Domain.Entities;
+﻿using DocumentManagement.Application.DTOs;
 
 namespace DocumentManagement.Application.Interfaces.Validators
 {
     public interface IDocumentValidator
     {
-        void ValidateDocument(Document document);
+        void ValidateDocument(UploadDocumentRequest document);
     }
 }

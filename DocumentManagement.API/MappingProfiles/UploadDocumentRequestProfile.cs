@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DocumentManagement.API.DTOs;
-using DocumentManagement.Domain.Entities;
+using DocumentManagement.Application.DTOs;
 
 namespace DocumentManagement.API.Configurations
 {
@@ -8,8 +8,8 @@ namespace DocumentManagement.API.Configurations
     {
         public UploadDocumentRequestProfile()
         {
-            CreateMap<UploadDocumentRequest, Document>()
-                   .ForMember(dest => dest.FileName, opt => opt.MapFrom(source => source.FileName))
+            CreateMap<UploadRequest, UploadDocumentRequest>()
+                   .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.FileName))
                    .ForMember(dest => dest.DocumentBase64, opt => opt.MapFrom(source => source.DocumentBase64));
         }
     }

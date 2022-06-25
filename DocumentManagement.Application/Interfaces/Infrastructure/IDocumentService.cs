@@ -1,11 +1,10 @@
 ﻿using DocumentManagement.Application.DTOs;
-using DocumentManagement.Domain.Entities;
 
 namespace DocumentManagement.Application.Interfaces.Infrastructure
 {
     public interface IDocumentService
     {
-        Document UploadDocument(Document document);
-        DownloadDocumentResponseDTO DownloadDocument(string filePath);
+        UploadDocumentResponse UploadDocument(UploadDocumentRequest document);
+        DownloadDocumentResponse DownloadDocument(string filePath);
     }
 }
