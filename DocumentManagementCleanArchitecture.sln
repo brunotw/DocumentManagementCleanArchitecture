@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentManagement.Domain",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C851407D-6DB1-4C81-83CA-28BC30B64BE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentManagement.MVC.Client", "DocumentManagement.MVC.Client\DocumentManagement.MVC.Client.csproj", "{FD39F3B8-A763-4B71-BBFD-1815B7101BD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{AE412C2F-9F32-4065-B186-4D7863274026}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE412C2F-9F32-4065-B186-4D7863274026}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE412C2F-9F32-4065-B186-4D7863274026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD39F3B8-A763-4B71-BBFD-1815B7101BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD39F3B8-A763-4B71-BBFD-1815B7101BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD39F3B8-A763-4B71-BBFD-1815B7101BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD39F3B8-A763-4B71-BBFD-1815B7101BD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{04E755F8-9ECB-47DA-AA5C-632931D4FAD6} = {957D533A-A16B-4D4A-A705-19A9D69A1084}
 		{A342E4C6-B04E-4EA3-ACBC-E2BBFA833E38} = {957D533A-A16B-4D4A-A705-19A9D69A1084}
 		{AE412C2F-9F32-4065-B186-4D7863274026} = {957D533A-A16B-4D4A-A705-19A9D69A1084}
+		{FD39F3B8-A763-4B71-BBFD-1815B7101BD2} = {957D533A-A16B-4D4A-A705-19A9D69A1084}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D858C708-27A1-4C8E-8C4F-6E10A71EBE40}
