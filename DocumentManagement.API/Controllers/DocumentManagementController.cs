@@ -44,17 +44,35 @@ namespace DocumentManagement.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/document/download/{fileName}")]
-        public FileContentResult DownloadDocument(string fileName)
+        [Route("api/document/download/{documentId}")]
+        public FileContentResult DownloadDocument(long documentId)
         {
             try
             {
-                var document = _documentHandler.DownloadDocument(fileName);
+                var document = _documentHandler.DownloadDocument(documentId);
                 DownloadResponse response = _mapper.Map<DownloadResponse>(document);
 
                 MemoryStream ms = new MemoryStream();
                 response.Stream.CopyTo(ms);
                 return File(ms.ToArray(), "application/octet-stream", response.FileName);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation($"Request Uri: {UriHelper.GetDisplayUrl(Request)}");
+                _logger.LogError(ex.Message);
+                throw;
+            }
+        }
+
+        [HttpDelete]
+        [Route("api/document/delete/{documentId}")]
+        public IActionResult DeleteDocument(long documentId)
+        {
+            try
+            {
+                _documentHandler.DeleteDocument(documentId);
+
+                return Ok($"Document with id {documentId} successfully deleted.");
             }
             catch (Exception ex)
             {

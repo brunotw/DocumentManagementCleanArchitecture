@@ -11,8 +11,8 @@ namespace DocumentManagement.Application.Validators
             if (document == null)
                 throw new ArgumentNullException(nameof(document));
 
-            if (string.IsNullOrEmpty(document.Name))
-                throw new ArgumentNullException(nameof(document.Name));
+            if (string.IsNullOrEmpty(document.FileName))
+                throw new ArgumentNullException(nameof(document.FileName));
 
             if (string.IsNullOrEmpty(document.DocumentBase64))
                 throw new ArgumentNullException(nameof(document.DocumentBase64));

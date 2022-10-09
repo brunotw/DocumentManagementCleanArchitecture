@@ -5,6 +5,7 @@ namespace DocumentManagement.Application.Interfaces.Application
     public interface IDocumentHandler
     {
         UploadDocumentResponse UploadDocument(UploadDocumentRequest document);
-        DownloadDocumentResponse DownloadDocument(string fileName);
+        DownloadDocumentResponse DownloadDocument(long documentId);
+        void DeleteDocument(long documentId);
     }
 }

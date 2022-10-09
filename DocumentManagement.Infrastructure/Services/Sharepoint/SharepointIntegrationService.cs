@@ -1,6 +1,5 @@
 ﻿using DocumentManagement.Application.DTOs;
 using DocumentManagement.Application.Interfaces.Infrastructure;
-using DocumentManagement.Domain.Entities;
 using DocumentManagement.Infrastructure.Managers;
 using DocumentManagement.Infrastructure.Services.Sharepoint.Configuration;
 using Microsoft.SharePoint.Client;
@@ -36,7 +35,7 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
                     return new UploadDocumentResponse
                     {
                         ExternalId = sharepointId.ToString(),
-                        Name = document.Name,
+                        Name = document.FileName,
                     };
                 }
             }
@@ -53,7 +52,7 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
 
             DownloadDocumentResponse response = new()
             {
-                Id = file.UniqueId,
+                //Id = file.UniqueId,
                 FileName = file.Name,
                 Stream = fileStream.Value
             };
@@ -66,10 +65,10 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
             {
                 Content = Convert.FromBase64String(document.DocumentBase64),
                 Overwrite = true,
-                Url = document.Name
+                Url = document.FileName
             };
 
-            var targetFolder = context.Web.GetFolderByServerRelativeUrl(document.FolderPath);
+            var targetFolder = context.Web.GetFolderByServerRelativeUrl(document.FolderId);
             var uploadFile = targetFolder.Files.Add(fileCreationInfo);
             context.Load(uploadFile);
             context.ExecuteQuery();
@@ -86,6 +85,10 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
             }
 
             return securePassword;
+        }
+        public DownloadDocumentResponse DownloadDocument(long documentId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

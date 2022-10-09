@@ -5,7 +5,6 @@ using DocumentManagement.Application.Interfaces.Application;
 using DocumentManagement.Application.Interfaces.Infrastructure;
 using DocumentManagement.Application.Interfaces.Validators;
 using DocumentManagement.Domain.Entities;
-using System.Web;
 
 namespace DocumentManagement.Application.Services
 {
@@ -22,30 +21,32 @@ namespace DocumentManagement.Application.Services
             _crmService = crmService;
         }
 
-        public DownloadDocumentResponse DownloadDocument(string fileName)
-        {
-            Configuration configurationFolderPath = _crmService.GetConfigurationByKey(ConfigurationKeys.SharePoint_FolderPath);
-
-            if (configurationFolderPath == null)
-                throw new ConfigurationNotFound(ConfigurationKeys.SharePoint_FolderPath);
-
-            string filePath = $"{configurationFolderPath.Value}/{fileName}";
-
-            return _documentService.DownloadDocument(filePath);
-        }
-
         public UploadDocumentResponse UploadDocument(UploadDocumentRequest document)
         {
             _documentValidator.ValidateDocument(document);
 
-            Configuration configurationFolderPath = _crmService.GetConfigurationByKey(ConfigurationKeys.SharePoint_FolderPath);
+            Configuration compassFolderId = _crmService.GetConfigurationByKey(ConfigurationKeys.Compass_FolderId);
 
-            if (configurationFolderPath == null)
-                throw new ConfigurationNotFound(ConfigurationKeys.SharePoint_FolderPath);
+            if (compassFolderId == null)
+                throw new ConfigurationNotFound(ConfigurationKeys.Compass_FolderId);
 
-            document.FolderPath = configurationFolderPath.Value;
+            document.FolderId = compassFolderId.Value;
 
             return _documentService.UploadDocument(document);
+        }
+
+        public DownloadDocumentResponse DownloadDocument(long documentId)
+        {
+            var document = _documentService.DownloadDocument(documentId);
+
+            if (document == null) throw new Exception($"Document with id {documentId} not found.");
+
+            return document;
+        }
+
+        public void DeleteDocument(long documentId)
+        {
+            _documentService.DeleteDocument(documentId);
         }
     }
 }

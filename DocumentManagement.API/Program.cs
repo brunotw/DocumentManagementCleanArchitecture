@@ -3,9 +3,8 @@ using DocumentManagement.Application.Interfaces.Infrastructure;
 using DocumentManagement.Application.Interfaces.Validators;
 using DocumentManagement.Application.Services;
 using DocumentManagement.Application.Validators;
+using DocumentManagement.Infrastructure.Services.Compass;
 using DocumentManagement.Infrastructure.Services.CRM;
-using DocumentManagement.Infrastructure.Services.Sharepoint;
-using DocumentManagement.Infrastructure.Services.Sharepoint.Configuration;
 using NLog;
 using NLog.Web;
 
@@ -19,9 +18,8 @@ try
     builder.Configuration.AddJsonFile("appsettings.Development.json", false, true);
 
     // Add services to the container.
-    builder.Services.AddScoped<IDocumentService, SharepointIntegrationService>();
+    builder.Services.AddScoped<IDocumentService, CompassIntegrationService>();
     builder.Services.AddScoped<IDocumentHandler, DocumentHandler>();
-    builder.Services.AddScoped<ISharePointConfiguration, SharePointConfiguration>();
     builder.Services.AddScoped<IDocumentValidator, DocumentValidator>();
     builder.Services.AddScoped<ICRMService, CRMService>();
 

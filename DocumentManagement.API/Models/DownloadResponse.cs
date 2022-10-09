@@ -2,7 +2,7 @@
 {
     public class DownloadResponse
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
         public string FileName { get; set; }
         public Stream Stream { get; set; }
     }
