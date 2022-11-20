@@ -43,6 +43,8 @@ try
         app.UseSwaggerUI();
     }
 
+    app.UseCors(options => options.WithOrigins("*").AllowAnyMethod());
+
     app.UseHttpsRedirection();
     app.UseAuthorization();
     app.MapControllers();

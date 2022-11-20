@@ -45,16 +45,15 @@ namespace DocumentManagement.API.Controllers
 
         [HttpGet]
         [Route("api/document/download/{documentId}")]
-        public FileContentResult DownloadDocument(long documentId)
+        public IActionResult DownloadDocument(long documentId)
         {
             try
             {
-                var document = _documentHandler.DownloadDocument(documentId);
+                _logger.LogInformation($"Download by thread: {Thread.CurrentThread.ManagedThreadId}");
+                DownloadDocumentResponse document = _documentHandler.DownloadDocument(documentId);
                 DownloadResponse response = _mapper.Map<DownloadResponse>(document);
 
-                MemoryStream ms = new MemoryStream();
-                response.Stream.CopyTo(ms);
-                return File(ms.ToArray(), "application/octet-stream", response.FileName);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -78,7 +77,24 @@ namespace DocumentManagement.API.Controllers
             {
                 _logger.LogInformation($"Request Uri: {UriHelper.GetDisplayUrl(Request)}");
                 _logger.LogError(ex.Message);
-                throw;
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/document/all")]
+        public IActionResult GetAllDocuments()
+        {
+            try
+            {
+                List<DownloadDocumentResponse> documents = _documentHandler.GetAllDocuments();
+                return Ok(documents);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation($"Request Uri: {UriHelper.GetDisplayUrl(Request)}");
+                _logger.LogError(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
     }

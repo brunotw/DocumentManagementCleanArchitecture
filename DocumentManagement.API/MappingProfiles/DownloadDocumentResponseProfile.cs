@@ -11,7 +11,8 @@ namespace DocumentManagement.API.MappingProfiles
             CreateMap<DownloadDocumentResponse, DownloadResponse>()
                      .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
                      .ForMember(dest => dest.FileName, opt => opt.MapFrom(mapExpression: source => source.FileName))
-                     .ForMember(dest => dest.Stream, opt => opt.MapFrom(mapExpression: source => source.Stream));
+                     .ForMember(dest => dest.FileExtension, opt => opt.MapFrom(mapExpression: source => source.FileExtension))
+                     .ForMember(dest => dest.DocumentBase64, opt => opt.MapFrom(mapExpression: source => source.DocumentBase64));
         }
     }
 }

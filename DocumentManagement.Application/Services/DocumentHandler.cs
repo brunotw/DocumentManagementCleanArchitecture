@@ -44,9 +44,16 @@ namespace DocumentManagement.Application.Services
             return document;
         }
 
+        public List<DownloadDocumentResponse> GetAllDocuments()
+        {
+            return _documentService.GetAllDocuments();
+        }
+
         public void DeleteDocument(long documentId)
         {
             _documentService.DeleteDocument(documentId);
         }
+
+     
     }
 }

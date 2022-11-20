@@ -4,6 +4,7 @@ using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Xrm.Sdk.Query;
+using System.Security.Policy;
 
 namespace DocumentManagement.Infrastructure.Services.CRM
 {

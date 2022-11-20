@@ -13,9 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentManagement.Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentManagement.Domain", "DocumentManagement.Domain\DocumentManagement.Domain.csproj", "{AE412C2F-9F32-4065-B186-4D7863274026}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C851407D-6DB1-4C81-83CA-28BC30B64BE1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentManagement.MVC.Client", "DocumentManagement.MVC.Client\DocumentManagement.MVC.Client.csproj", "{FD39F3B8-A763-4B71-BBFD-1815B7101BD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentManagement.MVC.Client", "DocumentManagement.MVC.Client\DocumentManagement.MVC.Client.csproj", "{FD39F3B8-A763-4B71-BBFD-1815B7101BD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

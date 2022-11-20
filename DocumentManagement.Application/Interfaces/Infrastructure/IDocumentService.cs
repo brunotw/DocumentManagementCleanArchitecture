@@ -6,6 +6,7 @@ namespace DocumentManagement.Application.Interfaces.Infrastructure
     {
         UploadDocumentResponse UploadDocument(UploadDocumentRequest document);
         DownloadDocumentResponse DownloadDocument(long documentId);
-        void DeleteDocument(long documentId);  
+        void DeleteDocument(long documentId);
+        List<DownloadDocumentResponse> GetAllDocuments();
     }
 }

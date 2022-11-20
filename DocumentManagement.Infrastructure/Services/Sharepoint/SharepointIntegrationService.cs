@@ -50,11 +50,17 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
             ClientResult<Stream> fileStream = file.OpenBinaryStream();
             context.ExecuteQuery();
 
+            string documentBase64;
+            using (StreamReader sr = new StreamReader(fileStream.Value))
+            {
+                documentBase64 = sr.ReadToEnd();
+            }
+
             DownloadDocumentResponse response = new()
             {
                 //Id = file.UniqueId,
                 FileName = file.Name,
-                Stream = fileStream.Value
+                DocumentBase64 = documentBase64
             };
 
             return response;
@@ -87,6 +93,16 @@ namespace DocumentManagement.Infrastructure.Services.Sharepoint
             return securePassword;
         }
         public DownloadDocumentResponse DownloadDocument(long documentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteDocument(long documentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DownloadDocumentResponse> GetAllDocuments()
         {
             throw new NotImplementedException();
         }

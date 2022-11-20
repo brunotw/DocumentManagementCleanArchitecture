@@ -7,5 +7,6 @@ namespace DocumentManagement.Application.Interfaces.Application
         UploadDocumentResponse UploadDocument(UploadDocumentRequest document);
         DownloadDocumentResponse DownloadDocument(long documentId);
         void DeleteDocument(long documentId);
+        List<DownloadDocumentResponse> GetAllDocuments();
     }
 }
