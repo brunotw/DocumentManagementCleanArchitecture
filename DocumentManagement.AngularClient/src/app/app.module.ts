@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { DocumentComponent } from './document/document.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DocumentService } from './document.service';
+import { MatIconModule } from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { DocumentService } from './document.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [DocumentService],
   bootstrap: [AppComponent]
