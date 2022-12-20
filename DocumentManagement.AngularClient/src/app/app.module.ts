@@ -7,11 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { DocumentService } from './document.service';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { UploadDocumentComponent } from './upload-document/upload-document.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DocumentComponent
+    DocumentComponent,
+    UploadDocumentComponent
   ],
   imports: [
     BrowserModule,

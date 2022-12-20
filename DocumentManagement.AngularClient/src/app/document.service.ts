@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Document } from './document/Document';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +9,7 @@ import { Document } from './document/Document';
 export class DocumentService {
   imageSource: any;
   private static readonly apiBaseUri = "https://localhost:7175/api/document";
-  
+
   constructor(private http: HttpClient) { }
 
   getDocuments(): Document[] {
@@ -40,5 +38,14 @@ export class DocumentService {
     }
 
     return this.http.delete(`${DocumentService.apiBaseUri}/delete/` + documentId, options);
+  }
+
+  uploadDocument(fileName: string, fileBase64: string) {
+    const body = {
+      fileName: fileName,
+      documentBase64: fileBase64,
+    };
+
+    return this.http.post(DocumentService.apiBaseUri + "/upload", body);
   }
 }

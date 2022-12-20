@@ -1,0 +1,26 @@
+<div class="container-sm">
+  <div class="d-flex justify-content-center">
+    <div id="hidden">
+      <input type="file" class="file-input" hidden (change)="onFileSelected($event)" #fileUpload>
+    </div>
+
+    <div id="divFileName" class="child">
+      {{fileName || "Chose a file to upload."}}
+    </div>
+
+    <div id="divAttachFile" class="child">
+      <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </div>
+
+    <div class="form-group" class="child">
+      <button class="btn btn-primary" *ngIf="shouldEnableSubmit()" (click)="onSubmit()">Submit</button>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <img id="filePreview" style="max-width: 65%;" [src]="showImagePreview()" alt="your image" />
+  </div>
+
+</div>

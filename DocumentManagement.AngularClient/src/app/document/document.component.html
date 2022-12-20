@@ -34,28 +34,16 @@
   </tbody>
 </table>
 
-<div class="d-flex  flex-row-reverse">
-  <input type="file" class="file-input" hidden (change)="onFileSelected($event)" #fileUpload>
-
-  <div class="file-upload">
-    {{fileName || "No file uploaded yet."}}
-
-    <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
-      <mat-icon>attach_file</mat-icon>
-    </button>
-  </div>
-</div>
-
 <!-- Vertically centered scrollable modal -->
 <div class="modal fade" id="viewDocumentModal" tabindex="-1" aria-labelledby="modalTitleId" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="modalTitleId">Visualizing Document</h1>
+        <h1 class="modal-title fs-5" id="modalTitleId">{{previewFileName}}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <img [src]="imageSource" alt="Image Source">
+        <img [src]="imageSource" style="max-width:100%" alt="Image Source">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

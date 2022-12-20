@@ -11,12 +11,16 @@ import { Document } from './Document';
 
 export class DocumentComponent implements OnInit {
   fileName: string;
+  fileBase64: string;
+  previewFileName: string;
+
   imageSource: any;
   files: Document[] = new Array();
 
   constructor(private documentService: DocumentService, private _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    debugger;
     this.files = this.documentService.getDocuments();
   }
 
@@ -29,6 +33,7 @@ export class DocumentComponent implements OnInit {
 
   viewDocumentModal(doc: any) {
     this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl(doc.documentBase64);
+    this.previewFileName = doc.fileName;
   }
 
   deleteDocument(documentId: number) {
@@ -42,22 +47,5 @@ export class DocumentComponent implements OnInit {
         alert("There was an error. Error details: " + error.error);
       }
     });
-  }
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-
-    if (file) {
-
-      this.fileName = file.name;
-
-      const formData = new FormData();
-
-      formData.append("thumbnail", file);
-
-      // const upload$ = this.http.post("/api/thumbnail-upload", formData);
-
-      // upload$.subscribe();
-    }
   }
 }
