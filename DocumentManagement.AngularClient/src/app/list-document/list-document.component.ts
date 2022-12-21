@@ -8,7 +8,7 @@ import { Document } from './Document';
   templateUrl: './list-document.component.html',
   styleUrls: ['./list-document.component.css'],
 })
-export class DocumentComponent implements OnInit {
+export class ListDocumentComponent implements OnInit {
   fileName: string;
   fileBase64: string;
   previewFileName: string;

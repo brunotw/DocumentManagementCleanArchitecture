@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { DocumentComponent } from './list-document/document.component';
+import { ListDocumentComponent } from './list-document/list-document.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DocumentService } from './document.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    DocumentComponent,
+    ListDocumentComponent,
     UploadDocumentComponent
   ],
   imports: [
