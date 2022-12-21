@@ -70,7 +70,7 @@ export class UploadDocumentComponent implements OnInit {
     this.documentService.uploadDocument(this.fileName, this.fileBase64).subscribe({
       next: data => {
         this.clearFileVariables();
-        this.reloadPage();
+        this.documentService.updateList();
       },
       error: error => {
         console.error('There was an error. Error details: ', error);
@@ -86,10 +86,6 @@ export class UploadDocumentComponent implements OnInit {
   
   private isImage() {
     return this.imageExtensions.includes(this.fileExtension);
-  }
-
-  private reloadPage(){
-    window.location.reload()
   }
 
   private getBrowseImageBase64() {

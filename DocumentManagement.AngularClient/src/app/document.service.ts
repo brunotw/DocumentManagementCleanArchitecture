@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Document } from './document/Document';
+import { Document } from './list-document/Document';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Document } from './document/Document';
 export class DocumentService {
   imageSource: any;
   private static readonly apiBaseUri = "https://localhost:7175/api/document";
-
+  private subject = new Subject<Document[]>();
   constructor(private http: HttpClient) { }
 
   getDocuments(): Document[] {
@@ -38,6 +39,15 @@ export class DocumentService {
     }
 
     return this.http.delete(`${DocumentService.apiBaseUri}/delete/` + documentId, options);
+  }
+
+  updateList() {
+    var files = this.getDocuments();
+    this.subject.next(files);
+  }
+
+  receiveUpdate(): Observable<Document[]> {
+    return this.subject.asObservable();
   }
 
   uploadDocument(fileName: string, fileBase64: string) {

@@ -4,11 +4,10 @@ import { DocumentService } from '../document.service';
 import { Document } from './Document';
 
 @Component({
-  selector: 'app-document',
-  templateUrl: './document.component.html',
-  styleUrls: ['./document.component.css']
+  selector: 'app-list-document',
+  templateUrl: './list-document.component.html',
+  styleUrls: ['./list-document.component.css'],
 })
-
 export class DocumentComponent implements OnInit {
   fileName: string;
   fileBase64: string;
@@ -17,11 +16,16 @@ export class DocumentComponent implements OnInit {
   imageSource: any;
   files: Document[] = new Array();
 
-  constructor(private documentService: DocumentService, private _sanitizer: DomSanitizer) { }
+  constructor(
+    private documentService: DocumentService,
+    private _sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
-    debugger;
     this.files = this.documentService.getDocuments();
+    this.documentService.receiveUpdate().subscribe((data) => {
+      this.files = data;
+    });
   }
 
   downloadDocument(doc: Document) {
@@ -32,20 +36,24 @@ export class DocumentComponent implements OnInit {
   }
 
   viewDocumentModal(doc: any) {
-    this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl(doc.documentBase64);
+    this.imageSource = this._sanitizer.bypassSecurityTrustResourceUrl(
+      doc.documentBase64
+    );
     this.previewFileName = doc.fileName;
   }
 
   deleteDocument(documentId: number) {
     this.documentService.deleteDocument(documentId).subscribe({
-      next: data => {
+      next: (data) => {
         console.log(data);
         this.ngOnInit();
       },
-      error: error => {
+      error: (error) => {
         console.error('There was an error. Error details: ', error.error);
-        alert("There was an error. Error details: " + error.error);
-      }
+        alert('There was an error. Error details: ' + error.error);
+      },
     });
   }
+
+  editDocument() {}
 }
