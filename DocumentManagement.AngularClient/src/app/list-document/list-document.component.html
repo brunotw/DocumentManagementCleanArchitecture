@@ -12,17 +12,27 @@
   </thead>
   <tbody>
     <tr *ngFor="let document of files">
-      <th scope="row">{{document.id}}</th>
-      <td>{{document.fileName}}</td>
-      <td>{{document.fileExtension}}</td>
+      <th scope="row">{{ document.id }}</th>
+      <td>{{ document.fileName }}</td>
+      <td>{{ document.fileExtension }}</td>
       <td [width]="50">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [disabled]="!document.isViewable"
-          data-bs-target="#viewDocumentModal" (click)="viewDocumentModal(document)">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          [disabled]="!document.isViewable"
+          data-bs-target="#viewDocumentModal"
+          (click)="viewDocumentModal(document)"
+        >
           <mat-icon>pageview</mat-icon>
         </button>
       </td>
       <td [width]="50">
-        <button type="button" class="btn btn-success" (click)="downloadDocument(document)">
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="downloadDocument(document)"
+        >
           <mat-icon>cloud_download</mat-icon>
         </button>
       </td>
@@ -34,7 +44,12 @@
       </td>
 
       <td [width]="50">
-        <button type="button" class="btn btn-danger" id="btnDelete" (click)="deleteDocument(document.id)">
+        <button
+          type="button"
+          class="btn btn-danger"
+          id="btnDelete"
+          (click)="deleteDocument(document.id)"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -43,18 +58,33 @@
 </table>
 
 <!-- Vertically centered scrollable modal -->
-<div class="modal fade" id="viewDocumentModal" tabindex="-1" aria-labelledby="modalTitleId" aria-hidden="true">
+<div
+  class="modal fade"
+  id="viewDocumentModal"
+  tabindex="-1"
+  aria-labelledby="modalTitleId"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="modalTitleId">{{previewFileName}}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title fs-5" id="modalTitleId">
+          {{ previewFileName }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <img [src]="imageSource" style="max-width:100%" alt="Image Source">
+        <img [src]="imageSource" style="max-width: 100%" alt="Image Source" />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
       </div>
     </div>
   </div>

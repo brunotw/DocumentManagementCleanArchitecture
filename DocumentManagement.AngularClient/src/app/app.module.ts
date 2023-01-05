@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { ListDocumentComponent } from './list-document/list-document.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,22 +8,23 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { UploadDocumentComponent } from './upload-document/upload-document.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListDocumentComponent,
-    UploadDocumentComponent
+    UploadDocumentComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     MatIconModule,
     MatButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [DocumentService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-
-export class AppModule { }
+export class AppModule {}
