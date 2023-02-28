@@ -19,7 +19,7 @@ namespace DocumentManagement.Infrastructure.Services.Compass
             {
                 FileName = document.FileName,
                 DocumentBase64 = document.DocumentBase64,
-                Id = DateTime.Now.Ticks
+                Id = DateTime.Now.Millisecond
             };
 
             downloadDocumentResponses.Add(doc);

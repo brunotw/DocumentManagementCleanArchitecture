@@ -24,10 +24,12 @@ namespace DocumentManagement.API.Controllers
 
         [HttpPost]
         [Route("api/document/upload")]
+        [RequestSizeLimit(4_100_000)]
         public IActionResult UploadDocument(UploadRequest uploadDocumentRequest)
         {
             try
             {
+                Console.WriteLine($"Content length: {HttpContext.Request.ContentLength}");
                 UploadDocumentRequest documentRequest = _mapper.Map<UploadDocumentRequest>(uploadDocumentRequest);
                 UploadDocumentResponse documentResponse = _documentHandler.UploadDocument(documentRequest);
                 UploadResponse uploadDocumentResponse = _mapper.Map<UploadResponse>(documentResponse);
