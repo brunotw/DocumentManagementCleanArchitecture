@@ -5,7 +5,6 @@ using DocumentManagement.Application.Services;
 using DocumentManagement.Application.Validators;
 using DocumentManagement.Infrastructure.Services.Compass;
 using DocumentManagement.Infrastructure.Services.CRM;
-using Microsoft.AspNetCore.Http.Features;
 using NLog;
 using NLog.Web;
 
